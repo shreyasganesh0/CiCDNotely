@@ -17,7 +17,7 @@ func TestGetAPIKey(t *testing.T) {
 
     _, got_err := auth.GetAPIKey(authheader);
 
-    if !reflect.DeepEqual(nil, got_err) {
+    if reflect.DeepEqual(nil, got_err) {
         t.Fatal("Expected nil for error got\n");
     }
 }
