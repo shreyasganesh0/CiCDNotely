@@ -9,6 +9,9 @@ jobs:
     name: Deploy
     runs-on: ubuntu-latest
 
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -20,6 +23,10 @@ jobs:
 
       - name: Build Prod
         run: ./scripts/buildprod.sh
+
+
+      - name: Migrate Db
+        run: ./scripts/migrateup.sh
 
       - name: 'auth'
         uses: 'google-github-actions/auth@v2'
